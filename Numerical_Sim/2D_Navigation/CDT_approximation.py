@@ -35,7 +35,7 @@ def constrained_delaunay(polygons):
     }
     
     # 执行约束Delaunay三角剖分 (p: 强制约束边, D: Delaunay性质)
-    result = tr.triangulate(mesh_data, 'pDa0.1')
+    result = tr.triangulate(mesh_data, 'pDa0.5')
     
     # 绘制结果
     plt.figure(figsize=(10, 8))
@@ -164,7 +164,7 @@ def reduce_circles(circles, d_bias):
         # 扩大当前圆的半径并保留
         reduced.append((x1, y1, r1 + d_bias))
     
-    return reduced
+    return reduced,len(reduced)
 
 def plot_circle_reduction(circles, d_bias):
     """
@@ -176,7 +176,7 @@ def plot_circle_reduction(circles, d_bias):
         d_bias: float, 合并阈值常数
     """
     # 缩减圆的数量
-    reduced_circles = reduce_circles(circles, d_bias)
+    reduced_circles,_ = reduce_circles(circles, d_bias=0.2)
     
     # 创建画布
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
@@ -209,27 +209,36 @@ def plot_circle_reduction(circles, d_bias):
     
     plt.tight_layout()
     plt.show()
+    return reduced_circles,len(reduced_circles)
 
 
-# MAP_X_RANGE = (0, 20)
-# MAP_Y_RANGE = (0, 20)    
-# polygons = generate_shapes(
-#     types='polytope',
-#     num_shapes=3,
-#     x_range=MAP_X_RANGE,
-#     y_range=MAP_Y_RANGE,
-#     vertex_range=(5, 20),
-#     size_limit=(1, 2))
+MAP_X_RANGE = (0, 20)
+MAP_Y_RANGE = (0, 20)    
+polygons = generate_shapes(
+    types='polytope',
+    num_shapes=3,
+    x_range=MAP_X_RANGE,
+    y_range=MAP_Y_RANGE,
+    vertex_range=(5, 20),
+    size_limit=(1, 2))
 
-# # print(polygons)
-# cdt_results=constrained_delaunay(polygons)
-# CDT_circumcircles(cdt_results)
-
-
-polygon1 = np.array([[0, 0], [2, 0], [2, 2], [0, 2]])  # 矩形
-polygon2 = np.array([[3, 1], [5, 1], [4, 3]])          # 三角形
-polygon3 = np.array([[6, 0], [8, 0], [7, 2], [6.5, 1]]) # 四边形
-# 调用函数
-cdt_results = constrained_delaunay([polygon1, polygon2, polygon3])
+# print(polygons)
+cdt_results=constrained_delaunay(polygons)
 circles=CDT_circumcircles(cdt_results)
-plot_circle_reduction(circles,d_bias=0.2)
+
+
+# polygon1 = np.array([[0, 0], [2, 0], [2, 2], [0, 2]])  # 矩形
+# polygon2 = np.array([[3, 1], [5, 1], [4, 3]])          # 三角形
+# polygon3 = np.array([[6, 0], [8, 0], [7, 2], [6.5, 1]]) # 四边形
+# # 调用函数
+# cdt_results = constrained_delaunay([polygon1, polygon2, polygon3])
+# circles=CDT_circumcircles(cdt_results)
+
+num_circles_temp=len(circles)
+num_circles=num_circles_temp+1
+while num_circles_temp<num_circles:
+    # print(num_circles_temp)
+    num_circles=num_circles_temp
+    circles,num_circles_temp=plot_circle_reduction(circles,0.2)
+
+# plot_circle_reduction(circles,d_bias=0.2)
