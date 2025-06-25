@@ -44,9 +44,9 @@ def simulate_agv(start_pos,target_pos,dt=0.02,total_time=10):
     plt.axis('equal')
     plt.show()
 
-if __name__ == "__main__":
-    start_pos=(0,2,np.pi/4)
-    target_pos=(5,4)
+# if __name__ == "__main__":
+#     start_pos=(0,2,np.pi/4)
+#     target_pos=(5,4)
 
 
-    simulate_agv(start_pos,target_pos)
+#     simulate_agv(start_pos,target_pos)
