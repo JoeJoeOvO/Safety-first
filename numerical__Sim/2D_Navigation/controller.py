@@ -154,6 +154,7 @@ class AGVController:
             ## 距离项的梯度
             grad_dist_x = 2 * dx
             grad_dist_y = 2 * dy
+            grad_dist_theta = 0.0
             
             ## 方向项的梯度
             if distance_sq < 1e-6:
@@ -175,14 +176,14 @@ class AGVController:
         
         return h_list, grad_h_list
     
-    def constraints(self,model,x,y,theta,algo=None,target=None,obstacles=None,k_clf=1,k_cbf=1):
+    def constraints(self,model,x,y,theta,types=None,target=None,obstacles=None,k_clf=1,k_cbf=1):
         f_dynamics,g_dynamics=model.dynamics_affine()
-
+        
         v_clf,grad_v=self.clf(x,y,theta,target,k_clf)
         clf_coeff=0.5
-        if algo!='clf_qp':
-            cbf_list,grad_cbf_list=self.cbf(x,y,theta,obstacles,k_cbf)
-            cbf_coeff=0.5
+
+        h_cbf,grad_h=self.cbf(x,y,theta,obstacles,k_cbf)
+        cbf_coeff=0.5
         # 权重矩阵 (可根据需要调整)
         Q = np.diag([1.0, 1.0])  # 对角权重矩阵
         c = np.zeros(2)  # 线性项
@@ -191,21 +192,9 @@ class AGVController:
         P = matrix(Q)
         q = matrix(c)
 
-        # CLF约束: grad_v @ g @ u <= -gamma * clf_v - grad_v @ f
+        # CLF 约束: grad_v @ g @ u <= -gamma * clf_v - grad_v @ f
         G_clf = grad_v.reshape(1, 3) @ g_dynamics  # (1,2)
         h_clf = np.array(-clf_coeff * v_clf - grad_v @ f_dynamics)  # (1,)
-
-        # CBF约束: grad_h @ g @ u >= -cbf_coeff * h - grad_h @ f
-        num_obstacles = len(cbf_list)
-        G_cbf = np.zeros((num_obstacles, 2))  # 每个障碍物对应一个约束
-        h_cbf = np.zeros(num_obstacles)
-        
-        for i in range(num_obstacles):
-            grad_h = grad_cbf_list[i]
-            h = cbf_list[i]
-            # 转化为QP标准形式: -grad_h @ g @ u <= cbf_coeff * h + grad_h @ f
-            G_cbf[i, :] = -(grad_h.reshape(1, 3) @ g_dynamics)  # (1,2)
-            h_cbf[i] = cbf_coeff * h + grad_h @ f_dynamics  # (1,)
 
         # 输入约束
         G_input = np.array([
@@ -228,7 +217,7 @@ class AGVController:
         return P,q,G,h
     
     def clf_qp(self,x,y,theta,model,target=None,k_clf=1):
-        P, q, G, h=self.constraints(model,x,y,theta,algo='clf_cbf_qp',target=target,k_clf=k_clf)        
+        P, q, G, h=self.constraints(model,x,y,theta,types='clf_cbf_qp',target=target,k_clf=k_clf)        
         # 求解 QP
         solvers.options['show_progress'] = False  # 关闭求解过程输出
         solution = solvers.qp(P, q, G, h)
@@ -251,6 +240,6 @@ class AGVController:
         f_dynamics,g_dynamics=model.dynamics_affine()
 
         clf_coeff=0.5
-    # def optimal_decay_clf_cbf_qp(self,x,y,theta):
+        # def optimal_decay_clf_cbf_qp(self,x,y,theta):
 
-    # def safety_first_clf_cbf_qp(self,x,y,theta):
+        # def safety_first_clf_cbf_qp(self,x,y,theta):
