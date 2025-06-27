@@ -212,33 +212,33 @@ def plot_circle_reduction(circles, d_bias):
     return reduced_circles,len(reduced_circles)
 
 
-MAP_X_RANGE = (0, 20)
-MAP_Y_RANGE = (0, 20)    
-polygons = generate_shapes(
-    types='polytope',
-    num_shapes=3,
-    x_range=MAP_X_RANGE,
-    y_range=MAP_Y_RANGE,
-    vertex_range=(5, 20),
-    size_limit=(1, 2))
+# MAP_X_RANGE = (0, 20)
+# MAP_Y_RANGE = (0, 20)    
+# polygons = generate_shapes(
+#     types='polytope',
+#     num_shapes=3,
+#     x_range=MAP_X_RANGE,
+#     y_range=MAP_Y_RANGE,
+#     vertex_range=(5, 20),
+#     size_limit=(1, 2))
 
-# print(polygons)
-cdt_results=constrained_delaunay(polygons)
-circles=CDT_circumcircles(cdt_results)
-
-
-# polygon1 = np.array([[0, 0], [2, 0], [2, 2], [0, 2]])  # 矩形
-# polygon2 = np.array([[3, 1], [5, 1], [4, 3]])          # 三角形
-# polygon3 = np.array([[6, 0], [8, 0], [7, 2], [6.5, 1]]) # 四边形
-# # 调用函数
-# cdt_results = constrained_delaunay([polygon1, polygon2, polygon3])
+# # print(polygons)
+# cdt_results=constrained_delaunay(polygons)
 # circles=CDT_circumcircles(cdt_results)
 
-num_circles_temp=len(circles)
-num_circles=num_circles_temp+1
-while num_circles_temp<num_circles:
-    # print(num_circles_temp)
-    num_circles=num_circles_temp
-    circles,num_circles_temp=plot_circle_reduction(circles,0.2)
 
-# plot_circle_reduction(circles,d_bias=0.2)
+# # polygon1 = np.array([[0, 0], [2, 0], [2, 2], [0, 2]])  # 矩形
+# # polygon2 = np.array([[3, 1], [5, 1], [4, 3]])          # 三角形
+# # polygon3 = np.array([[6, 0], [8, 0], [7, 2], [6.5, 1]]) # 四边形
+# # # 调用函数
+# # cdt_results = constrained_delaunay([polygon1, polygon2, polygon3])
+# # circles=CDT_circumcircles(cdt_results)
+
+# num_circles_temp=len(circles)
+# num_circles=num_circles_temp+1
+# while num_circles_temp<num_circles:
+#     # print(num_circles_temp)
+#     num_circles=num_circles_temp
+#     circles,num_circles_temp=plot_circle_reduction(circles,0.2)
+
+# # plot_circle_reduction(circles,d_bias=0.2)

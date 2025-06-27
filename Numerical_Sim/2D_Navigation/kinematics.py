@@ -12,6 +12,18 @@ class AGVKinematics:
         self.x, self.y = start_position
         self.theta = start_theta  # 朝向角度
     
+    def dynamics_affine(self):
+        f = np.zeros((3, 1))
+    
+        # 控制矩阵 g(s)
+        g = np.array([
+            [np.cos(self.theta), 0],
+            [np.sin(self.theta), 0],
+            [0, 1]
+        ])
+        
+        return f, g
+
     def update(self, v, omega, dt):
         """
         更新AGV状态
