@@ -1,4 +1,4 @@
-# Safety-critical Control with Control Barrier Functions: A Hierarchical Optimization Framework
+# [T-ASE'25] Safety-critical Control with Control Barrier Functions: A Hierarchical Optimization Framework
 
 <!-- **HardNet** is a framework for constructing neural networks that inherently satisfy hard constraints without sacrificing model capacity.
 By appending a differentiable enforcement layer to the network's output, HardNet ensures that the outputs adhere to specified input-dependent constraints, enabling unconstrained optimization of network parameters using standard algorithms. -->
