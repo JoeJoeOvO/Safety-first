@@ -1,6 +1,6 @@
 # [T-ASE'25] CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems
 
-This repository reproduces the algorithm called **Safety-first CLF-CBF QP** in our paper "[CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems](https://ieeexplore.ieee.org/document/11230627)."
+This repository reproduces the algorithm called **Safety-first CLF-CBF QP** in our paper "[CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems](https://ieeexplore.ieee.org/document/11230627)".
 
 If you use this work in your research, please cite:
 ```bibtex
