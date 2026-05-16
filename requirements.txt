@@ -1,0 +1,5 @@
+cvxopt
+matplotlib
+numpy
+scipy
+triangle

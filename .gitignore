@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+outputs/
+simulation_results/
+*.png
+*.pdf
+*.mp4
+*.xlsx
+*.pptx
+*.docx

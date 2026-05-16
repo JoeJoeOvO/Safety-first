@@ -1,20 +1,80 @@
 # [T-ASE'25] CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems
 
-This repository reproduces the algorithm called **Safety-first CLF-CBF QP** in our paper "[CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems](https://ieeexplore.ieee.org/document/11230627)".
+This repository reproduces the algorithm called **Safety-first CLF-CBF QP** in our paper 
 
-If you use this work in your research, please cite:
+"[CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems](https://ieeexplore.ieee.org/document/11230627)", IEEE Transactions on Automation Science and Engineering, 2025.
+
+The code demonstrates the pipeline used in the paper:
+
+1. Input polygonal obstacle boundary points.
+2. Approximate each obstacle by multiple circles using constrained Delaunay triangulation (CDT).
+3. Build one CBF per approximating circle.
+4. Compute safe controls for a unicycle model with CLF-CBF-QP variants.
+
+## Algorithms
+
+The public example keeps only the following methods:
+
+- `ClfCbfQp`: standard CLF-CBF QP
+- `OptimalDecay`: Optimal-decay CLF-CBF QP (with optimal decay/slack variables)
+- `SafetyFirst`: the proposed safety-first hierarchical CLF-CBF QP
+
+
+## Installation
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+## Run Examples
+
+Run the narrow-corridor example:
+
+```bash
+python examples/run_simulation.py --scene narrow_corridor
+```
+
+Run the multi-obstacle example:
+
+```bash
+python examples/run_simulation.py --scene multi_obstacle
+```
+
+Run only the proposed method:
+
+```bash
+python examples/run_simulation.py --scene narrow_corridor --methods SafetyFirst
+```
+
+Generated figures are written to `outputs/`, which is ignored by Git.
+
+## Repository Layout
+
+```text
+safetyfirst/
+  controllers.py      CLF-CBF QP, Optimal-decay CLF-CBF QP, and our **SafetyFirst CLF-CBF QP** controllers
+  geometry.py         CDT-based circle approximation from obstacle boundaries
+  scenes.py           Two example maps: narrow corridor and multi-obstacle
+  simulation.py       Unicycle simulation and plotting utilities
+examples/
+  run_simulation.py   Command-line example runner
+requirements.txt      Python dependencies
+```
+
+## Citation
+
+If our research is useful for you, please cite:
+
 ```bibtex
 @ARTICLE{11230627,
   author={Xie, Junjun and Hu, Liang and Tan, Yunzhe and Yang, Jun},
-  journal={IEEE Transactions on Automation Science and Engineering}, 
-  title={CBF-Based Hierarchical Quadratic Programs With Guaranteed Feasibility for Safety-Critical Systems}, 
+  journal={IEEE Transactions on Automation Science and Engineering},
+  title={CBF-Based Hierarchical Quadratic Programs With Guaranteed Feasibility for Safety-Critical Systems},
   year={2025},
   volume={22},
-  number={},
   pages={23687-23699},
-  keywords={Safety;Optimization;Navigation;Vehicle dynamics;Lyapunov methods;Heuristic algorithms;Control design;Collision avoidance;Aerodynamics;Vectors;Control barrier function;safe navigation;collision avoidance;autonomous systems},
-  doi={10.1109/TASE.2025.3629713}}
-
-
+  doi={10.1109/TASE.2025.3629713}
+}
 ```
-COMING SOON.
