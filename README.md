@@ -1,8 +1,10 @@
-# 🛡️ [T-ASE'25] CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems
+# [T-ASE'25] CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems
 
 This repository reproduces the algorithm called **Safety-first CLF-CBF QP** in our paper 
 
 "[CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems](https://ieeexplore.ieee.org/document/11230627)", *IEEE Transactions on Automation Science and Engineering*, 2025.
+
+[![Video](https://img.shields.io/badge/dynamic/json?style=flat&label=%E2%96%B7%20Video&query=%24.metrics%5B%22safetyfirst-video%22%5D.display&url=https%3A%2F%2Fraw.githubusercontent.com%2FJoeJoeOvO%2FJoeJoeOVO.github.io%2Fmain%2Fdata%2Fresource-metrics.json&labelColor=fff9f7&color=fff0ec)](https://www.bilibili.com/video/BV1yk2MBUE13)
 
 The code demonstrates the pipeline used in the paper:
 
@@ -11,9 +13,9 @@ The code demonstrates the pipeline used in the paper:
 3. Build one CBF per approximating circle.
 4. Compute safe controls for a unicycle model with CLF-CBF-QP variants.
 
-## 🧠 Algorithms
+## 🧮 Algorithms
 
-The public example keeps only the following methods:
+The public example keeps the following methods:
 
 - `ClfCbfQp`: standard CLF-CBF QP
 - `OptimalDecay`: Optimal-decay CLF-CBF QP (with optimal decay/slack variables)
@@ -23,6 +25,8 @@ The public example keeps only the following methods:
 ## ⚙️ Installation
 
 ```bash
+git clone https://github.com/JoeJoeOvO/Safety-first.git
+cd Safety-first
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
