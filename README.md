@@ -1,8 +1,8 @@
-# [T-ASE'25] CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems
+# 🛡️ [T-ASE'25] CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems
 
 This repository reproduces the algorithm called **Safety-first CLF-CBF QP** in our paper 
 
-"[CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems](https://ieeexplore.ieee.org/document/11230627)", IEEE Transactions on Automation Science and Engineering, 2025.
+"[CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems](https://ieeexplore.ieee.org/document/11230627)", *IEEE Transactions on Automation Science and Engineering*, 2025.
 
 The code demonstrates the pipeline used in the paper:
 
@@ -11,7 +11,7 @@ The code demonstrates the pipeline used in the paper:
 3. Build one CBF per approximating circle.
 4. Compute safe controls for a unicycle model with CLF-CBF-QP variants.
 
-## Algorithms
+## 🧠 Algorithms
 
 The public example keeps only the following methods:
 
@@ -20,7 +20,7 @@ The public example keeps only the following methods:
 - `SafetyFirst`: the proposed safety-first hierarchical CLF-CBF QP
 
 
-## Installation
+## ⚙️ Installation
 
 ```bash
 python -m venv .venv
@@ -28,7 +28,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Run Examples
+## 🚀 Run Examples
 
 Run the narrow-corridor example:
 
@@ -48,9 +48,9 @@ Run only the proposed method:
 python examples/run_simulation.py --scene narrow_corridor --methods SafetyFirst
 ```
 
-Generated figures are written to `outputs/`, which is ignored by Git.
+Generated figures are written to `outputs/`.
 
-## Repository Layout
+## 📁 Repository Layout
 
 ```text
 safetyfirst/
@@ -63,7 +63,7 @@ examples/
 requirements.txt      Python dependencies
 ```
 
-## Citation
+## 📖 Citation
 
 If our research is useful for you, please cite:
 
