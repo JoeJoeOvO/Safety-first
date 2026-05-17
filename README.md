@@ -2,10 +2,13 @@
 
 This repository reproduces the algorithm called **Safety-first CLF-CBF QP** in our paper:
 
-> 📄 "[CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems](https://ieeexplore.ieee.org/document/11230627)"  
-> *IEEE Transactions on Automation Science and Engineering*, 2025.
+> <p>
+>   <img src="https://github.githubassets.com/images/icons/emoji/unicode/1f4c4.png" width="36" height="36" align="left" alt="Paper">
+>   <a href="https://ieeexplore.ieee.org/document/11230627">"CBF-Based Hierarchical Quadratic Programs with Guaranteed Feasibility for Safety-Critical Systems"</a><br>
+>   <em>IEEE Transactions on Automation Science and Engineering</em>, 2025.
+> </p>
 
-This <a href="https://www.bilibili.com/video/BV1yk2MBUE13"><img align="absmiddle" alt="Video" src="https://img.shields.io/badge/dynamic/json?style=flat&label=%E2%96%B7%20Video&query=%24.metrics%5B%22safetyfirst-video%22%5D.display&url=https%3A%2F%2Fraw.githubusercontent.com%2FJoeJoeOvO%2FJoeJoeOVO.github.io%2Fmaster%2Fdata%2Fresource-metrics.json&labelColor=fff9f7&color=fff0ec"></a> introduces the algorithmic framework and experimental results.
+This <a href="https://www.bilibili.com/video/BV1yk2MBUE13"><img height="18" align="middle" alt="Video" src="https://img.shields.io/badge/dynamic/json?style=flat&label=%E2%96%B7%20Video&query=%24.metrics%5B%22safetyfirst-video%22%5D.display&url=https%3A%2F%2Fraw.githubusercontent.com%2FJoeJoeOvO%2FJoeJoeOVO.github.io%2Fmaster%2Fdata%2Fresource-metrics.json&labelColor=fff9f7&color=fff0ec"></a> introduces the algorithmic framework and experimental results.
 
 The code demonstrates the pipeline used in the paper:
 
